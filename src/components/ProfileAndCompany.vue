@@ -1,8 +1,16 @@
 <template>
   <div class="container">
-    <h6> {{profiles}} </h6>
-    <h6> {{company}} </h6>
+    <ul>
+      <li v-for="profile in profiles" v-bind:key="profile"> {{ profile.name }} {{profile.surname}}</li>
+    </ul>
+    <ul>
+      <li v-for="company in companys" v-bind:key="company"> {{ company.name }} {{company.url}}</li>
+    </ul>
+
+
   </div>
+
+
 </template>
 
 <script>
@@ -14,19 +22,19 @@ export default {
   data() {
     return {
       profiles: null,
-      company: null
+      companys: null
     }
   },
-  mounted () {
+  mounted() {
     axios
         .get('http://89.88.140.151:8840/api/profile/')
         .then(response => (this.profiles = response.data))
     console.log(this.profiles);
     axios
         .get('http://89.88.140.151:8840/api/company/')
-        .then(response => (this.company = response.data))
-    console.log(this.company);
-  }
+        .then(response => (this.companys = response.data))
+    console.log(this.companys);
+  },
 }
 </script>
 

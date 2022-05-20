@@ -1,14 +1,17 @@
 <template>
   <ProfileAndCompany />
+  <create />
 </template>
 
 <script>
 
 import ProfileAndCompany from "@/components/ProfileAndCompany";
+import Create from "@/components/Create";
 
 export default {
   name: 'App',
   components: {
+    Create,
     ProfileAndCompany,
   }
 }
