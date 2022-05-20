@@ -8,7 +8,7 @@
       </div>
       <div>
         <label for="surname">Surname:</label><br>
-        <input id="surname" type="text" v-model="surname" required/>
+        <input id="surname" type="text" v-model="username" required/>
       </div>
       <div>
         <label for="phone">phone:</label><br>
@@ -36,7 +36,7 @@ export default {
     return {
       companys: null,
       name: '',
-      surname: '',
+      username: '',
       phone: '',
       company: '',
       activeClass: 'active'
@@ -46,7 +46,7 @@ export default {
     submitForm() {
       axios.post('http://89.88.140.151:8840/api/profile/', {
         name: this.name,
-        surname: this.surname,
+        surname: this.username,
         phone: this.phone,
         company: this.company
       }).then(response => {

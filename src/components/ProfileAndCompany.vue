@@ -20,8 +20,6 @@
     <ul>
       <li v-for="company in companys" v-bind:key="company"> {{ company.name }} {{ company.url }}</li>
     </ul>
-
-
   </div>
 
 
@@ -36,7 +34,11 @@ export default {
   data() {
     return {
       profiles: null,
-      companys: null
+      companys: null,
+      name: '',
+      username: '',
+      phone: '',
+      company: '',
     }
   },
 
