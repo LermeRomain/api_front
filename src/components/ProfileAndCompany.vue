@@ -8,7 +8,7 @@
           <label>Name</label>
           <input type="text" class="form-control" v-model="profile.name"><br>
           <label>username</label>
-          <input type="text" class="form-control" v-model="profile.username"><br>
+          <input type="text" class="form-control" v-model="profile.surname"><br>
           <label>phone</label>
           <input type="text" class="form-control" v-model="profile.phone"><br>
           <label>company</label>
@@ -36,7 +36,7 @@ export default {
       profiles: null,
       companys: null,
       name: '',
-      username: '',
+      surname: '',
       phone: '',
       company: '',
     }
@@ -55,13 +55,31 @@ export default {
     },
 
     updateProfile(id) {
-      axios.put('http://89.88.140.151:8840/api/profile/' + id)
+/*      axios.put('http://89.88.140.151:8840/api/profile/' + id)
           .then(response => {
             console.log(response);
           })
           .catch(function (error) {
             console.log(error.profile)
-          })
+          })*/
+
+
+      axios.put('http://89.88.140.151:8840/api/profile/' + id, {
+        name: this.name,
+        surname: this.surname,
+        phone: this.phone,
+        company: this.company
+      }).then(response => {
+        console.log(response);
+        this.response = response.data
+        this.response = JSON.stringify(response, null, 2)
+      }).catch(error => {
+        this.response = 'Error: ' + error.response.status
+      })
+      this.name = '';
+      this.surname = '';
+      this.phone = '';
+      this.company = '';
     }
   },
   mounted() {
