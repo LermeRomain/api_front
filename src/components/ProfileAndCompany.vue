@@ -3,17 +3,19 @@
     <ul v-for="profile in profiles" v-bind:key="profile">
       <li> {{ profile.name }} {{ profile.surname }}</li>
       <button v-on:click="deleteProfile(profile.id)">Delete</button>
-      <button v-on:click="updateProfile(profile.id)">update</button>
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" class="form-control" v-model="profile.name"><br>
-        <label>username</label>
-        <input type="text" class="form-control" v-model="profile.username"><br>
-        <label>phone</label>
-        <input type="text" class="form-control" v-model="profile.phone"><br>
-        <label>company</label>
-        <input type="text" class="form-control" v-model="profile.company"><br>
-      </div>
+      <form @submit.prevent="updateProfile">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" v-model="profile.name"><br>
+          <label>username</label>
+          <input type="text" class="form-control" v-model="profile.username"><br>
+          <label>phone</label>
+          <input type="text" class="form-control" v-model="profile.phone"><br>
+          <label>company</label>
+          <input type="text" class="form-control" v-model="profile.company"><br>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </ul>
     <ul>
       <li v-for="company in companys" v-bind:key="company"> {{ company.name }} {{ company.url }}</li>
@@ -51,7 +53,7 @@ export default {
     },
 
     updateProfile(id) {
-      axios.patch('http://89.88.140.151:8840/api/profile/' + id)
+      axios.put('http://89.88.140.151:8840/api/profile/' + id)
           .then(response => {
             console.log(response);
           })
