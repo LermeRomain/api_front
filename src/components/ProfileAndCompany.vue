@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <ul>
-      <li v-for="profile in profiles" v-bind:key="profile"> {{ profile.name }} {{profile.surname}}</li>
+    <ul  v-for="profile in profiles" v-bind:key="profile">
+      <li> {{ profile.name }} {{profile.surname}}</li>
+      <button v-on:click="deleteProfile(profile.id)">Delete</button>
     </ul>
     <ul>
       <li v-for="company in companys" v-bind:key="company"> {{ company.name }} {{company.url}}</li>
@@ -23,6 +24,14 @@ export default {
     return {
       profiles: null,
       companys: null
+    }
+  },
+
+  methods:{
+    deleteProfile(id){
+      axios.delete('http://89.88.140.151:8840/api/profile/'+id).then(()=>
+        this.mounted()
+      )
     }
   },
   mounted() {
